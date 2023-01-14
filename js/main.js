@@ -248,21 +248,50 @@ returns 1 1 is now the value inside as it goes back up so now it's
 
 // console.log(fibs(5))
 
-function all(arr, callback){
-    const copy = arr.map(item => item)
 
-    if(copy.length === 0){
-        return true
-    }else if(callback(copy[0]) === true){
-        copy.shift()
-        return all(copy, callback)
-    }else{
-        return false
-    }
+
+// Question 4: Check all values in an array
+
+
+// function all(arr, callback){
+//     const copy = arr.map(item => item)
+
+//     if(copy.length === 0){
+//         return true
+//     }else if(callback(copy[0]) === true){
+//         copy.shift()
+//         return all(copy, callback)
+//     }else{
+//         return false
+//     }
+// }
+
+// var allAreLessThanSeven = all([1,10,5], function(num){
+// 	return num < 7;
+// });
+
+// console.log(allAreLessThanSeven);
+
+
+// Question 5: Product of an array
+
+// function productOfArray(arr, product = 1, index = arr.length-1){
+//     const copy = arr.map(item => item)
+    
+//     if(index === 0){
+//         return product
+//     }else{
+//         product = product * copy[index]
+//         index--
+//         return productOfArray(copy, product, index)
+//     }
+// }
+
+function productOfArray(array){
+	if(array.length === 0) return 1;
+
+	return array.shift() * productOfArray(array);
 }
 
-var allAreLessThanSeven = all([1,10,5], function(num){
-	return num < 7;
-});
 
-console.log(allAreLessThanSeven);
+console.log(productOfArray([1,2,3,10]))
