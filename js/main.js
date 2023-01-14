@@ -287,11 +287,68 @@ returns 1 1 is now the value inside as it goes back up so now it's
 //     }
 // }
 
-function productOfArray(array){
-	if(array.length === 0) return 1;
+// function productOfArray(array){
+// 	if(array.length === 0) return 1;
 
-	return array.shift() * productOfArray(array);
+// 	return array.shift() * productOfArray(array);
+// }
+
+
+// console.log(productOfArray([1,2,3,10]))
+
+
+
+
+
+// Question 6: Search JS object
+
+
+var nestedObject = {
+    data: {
+        info: {
+            stuff: {
+                thing: {
+                    moreStuff: {
+                        magicNumber: 44,
+                        something: 'foo2'
+                    }
+                }
+            }
+        }
+    }
 }
 
 
-console.log(productOfArray([1,2,3,10]))
+
+
+function contains(obj, item){
+
+    for(const property in obj){
+        if(typeof obj[property] === 'object'){
+            return contains(obj[property], item)
+        }
+
+        if(obj[property] === item){
+            return true
+        }
+    }
+    return false
+
+}
+
+console.log(contains(nestedObject, 'foo2'))
+
+// const nestedObject = [44, 'foo2']
+
+// function contains(obj, item){
+//     const newObj = obj.map(x => x)
+//     if(newObj.length === 0){
+//         return false
+//     }else if(newObj[0] !== item){
+//         newObj.shift()
+//         return contains(newObj, item)
+//     }else{
+//         return true
+//     }
+// }
+
