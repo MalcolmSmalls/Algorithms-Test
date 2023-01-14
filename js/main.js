@@ -72,14 +72,28 @@
 
 // function countDown(x){
 //     if(x === 1){
-//         return x // this returns x which would be 1 at this case,
+//         return x 
 //     } else {
 //         console.log(x)
-//         return countDown(x-1) // i guess this goes all the way down to 1-1, which means x is 1 for some reason then it hits the base
+//         return countDown(x-1) 
 //     }
 // }
 
-// console.log(countDown(10))
+// console.log(countDown(3))
+
+
+/* 
+Starts with countDown(3)
+3 !== 1 so it goes to else statement
+console.logs x which is 3 then
+hits return which calls countDown(2)
+2 !== 1 so it goes to else statement
+console logs x which is 2 at the time
+hits return which calls countDown(1)
+1 === 1 so it returns 1 this remains the value of x because nothing ever happens for it to change as in no multiplication or addition
+so it goes back to countDown(2) then countDown(3) now it console logs the value of x which hasn't changed so it console logs 1
+
+*/
 
 
 // function fib(n){
@@ -101,17 +115,17 @@ then return 1
 
 */
 
-function sumRange(x){
-    if(x===1){
-        console.log(x)
-        return x
-    }else{
-        console.log(x)
-        return x + sumRange(x-1)
-    }
-}
+// function sumRange(x){
+//     if(x===1){
+//         console.log(x)
+//         return x
+//     }else{
+//         console.log(x)
+//         return x + sumRange(x-1)
+//     }
+// }
 
-console.log(sumRange(3))
+// console.log(sumRange(3))
 
 /* 
 Step 1: sumRange(3) is called, 3 as the argument and checks first conditional, is x === to 1? This is a no... so
@@ -223,3 +237,32 @@ returns 1 1 is now the value inside as it goes back up so now it's
 
 
 */
+
+// function fibs(n) {
+//     if(n<=1){
+//         return n
+//     } else {
+//         return fibs(n-1) + fibs(n-2)
+//     }
+// }
+
+// console.log(fibs(5))
+
+function all(arr, callback){
+    const copy = arr.map(item => item)
+
+    if(copy.length === 0){
+        return true
+    }else if(callback(copy[0]) === true){
+        copy.shift()
+        return all(copy, callback)
+    }else{
+        return false
+    }
+}
+
+var allAreLessThanSeven = all([1,10,5], function(num){
+	return num < 7;
+});
+
+console.log(allAreLessThanSeven);
