@@ -303,40 +303,40 @@ returns 1 1 is now the value inside as it goes back up so now it's
 // Question 6: Search JS object
 
 
-var nestedObject = {
-    data: {
-        info: {
-            stuff: {
-                thing: {
-                    moreStuff: {
-                        magicNumber: 44,
-                        something: 'foo2'
-                    }
-                }
-            }
-        }
-    }
-}
+// var nestedObject = {
+//     data: {
+//         info: {
+//             stuff: {
+//                 thing: {
+//                     moreStuff: {
+//                         magicNumber: 44,
+//                         something: 'foo2'
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 
 
-function contains(obj, item){
+// function contains(obj, item){
 
-    for(const property in obj){
-        if(typeof obj[property] === 'object'){
-            return contains(obj[property], item)
-        }
+//     for(const property in obj){
+//         if(typeof obj[property] === 'object'){
+//             return contains(obj[property], item)
+//         }
 
-        if(obj[property] === item){
-            return true
-        }
-    }
-    return false
+//         if(obj[property] === item){
+//             return true
+//         }
+//     }
+//     return false
 
-}
+// }
 
-console.log(contains(nestedObject, 'foo2'))
+// console.log(contains(nestedObject, 'foo2'))
 
 // const nestedObject = [44, 'foo2']
 
@@ -352,3 +352,32 @@ console.log(contains(nestedObject, 'foo2'))
 //     }
 // }
 
+
+function merge(left, right){
+    const newArr = []
+    while(left.length > 0 && right.length > 0){
+        if(left[0] < right[0]){
+            newArr.push(left.shift())
+        }else{
+        newArr.push(right.shift())
+        }
+    }
+    return [...newArr, ...left, ...right]
+}
+
+
+function mergeSort(arr){
+    let middle = Math.round(arr.length/2)
+    let left = arr.slice(0, middle)
+    let right = arr.slice(middle)
+    if(arr.length < 2){
+        return arr
+    }
+    return merge(
+        mergeSort(left),
+        mergeSort(right)
+    )
+}
+
+
+console.log(mergeSort([4,3,6, 2]))    
